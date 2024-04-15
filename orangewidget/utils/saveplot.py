@@ -29,8 +29,8 @@ def save_plot(data, file_formats, start_dir="", filename=""):
     except OSError as e:
         mb = QMessageBox(
             None,
-            windowTitle="Error",
-            text='Error occurred while saving file "{}": {}'.format(filename, e),
+            windowTitle="错误",
+            text='保存文件 "{}" 时发生错误: {}'.format(filename, e),
             detailedText=traceback.format_exc(),
             icon=QMessageBox.Critical)
         mb.exec()

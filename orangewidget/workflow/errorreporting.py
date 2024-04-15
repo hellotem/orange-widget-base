@@ -90,7 +90,7 @@ class ErrorReporting(QDialog):
 
         super().__init__(None, Qt.Window, modal=True,
                          sizeGripEnabled=True, windowIcon=icon,
-                         windowTitle='Unexpected Error',
+                         windowTitle='未预期的错误',
                          finished=_finished)
         self._data = data
 
@@ -101,9 +101,9 @@ class ErrorReporting(QDialog):
         labels.setLayout(labels_layout)
         labels_layout.addWidget(QLabel(pixmap=icon.pixmap(50, 50)))
         labels_layout.addWidget(QLabel(
-            'The program encountered an unexpected error. Please<br>'
-            'report it anonymously to the developers.<br><br>'
-            'The following data will be reported:'))
+            '程序遇到意外错误。请<br>'
+            '匿名报告给开发人员。<br><br>'
+            '将报告以下数据:'))
         labels_layout.addStretch(1)
         layout.addWidget(labels)
         font = QFont('Monospace', 10)
@@ -136,7 +136,7 @@ class ErrorReporting(QDialog):
 
         settings = QSettings()
         cb = QCheckBox(
-            'Include workflow (data will NOT be transmitted)', self,
+            '包括工作流(数据不会被传输)', self,
             checked=settings.value('error-reporting/add-scheme', True, type=bool))
         cb.stateChanged.connect(_reload_text)
         _reload_text()
@@ -146,8 +146,8 @@ class ErrorReporting(QDialog):
         buttons_layout = QHBoxLayout(self)
         buttons.setLayout(buttons_layout)
         buttons_layout.addWidget(
-            QPushButton('Send Report (Thanks!)', default=True, clicked=self.accept))
-        buttons_layout.addWidget(QPushButton("Don't Send", default=False, clicked=self.reject))
+            QPushButton('发送报告(谢谢!)', default=True, clicked=self.accept))
+        buttons_layout.addWidget(QPushButton("不发送", default=False, clicked=self.reject))
         layout.addWidget(buttons)
 
     def accept(self):
@@ -234,8 +234,8 @@ class ErrorReporting(QDialog):
         # just warn about it
         # or if computer not connected to the internet
         if (err_module, widget_module) in cls._cache or not internet_on():
-            QMessageBox(QMessageBox.Warning, 'Error Encountered',
-                        'Error encountered{}:<br><br><tt>{}</tt>'.format(
+            QMessageBox(QMessageBox.Warning, '遇到错误',
+                        '遇到错误{}:<br><br><tt>{}</tt>'.format(
                             (' in widget <b>{}</b>'.format(widget_class.name)
                              if widget_class else ''),
                             stacktrace.replace('\n', '<br>').replace(' ', '&nbsp;')),

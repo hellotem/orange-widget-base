@@ -69,8 +69,8 @@ class ReportItemModel(QStandardItemModel):
     def add_item(self, item):
         row = self.rowCount()
         self.setItem(row, Column.item, item)
-        self.setItem(row, Column.remove, self._icon_item("Remove"))
-        self.setItem(row, Column.scheme, self._icon_item("Open Scheme"))
+        self.setItem(row, Column.remove, self._icon_item("移除"))
+        self.setItem(row, Column.scheme, self._icon_item("打开方案"))
 
     def get_item_by_id(self, item_id):
         for i in range(self.rowCount()):
@@ -124,7 +124,7 @@ class ReportTable(QTableView):
 
 
 class OWReport(OWBaseWidget):
-    name = "Report"
+    name = "报告"
     save_dir = Setting("")
     open_dir = Setting("")
 
@@ -161,16 +161,16 @@ class OWReport(OWBaseWidget):
 
         self.last_scheme = None
         self.scheme_button = gui.button(
-            self.controlArea, self, "Back to Last Scheme",
+            self.controlArea, self, "返回上一个方案",
             callback=self._show_last_scheme
         )
         box = gui.hBox(self.controlArea)
         box.setContentsMargins(-6, 0, -6, 0)
         self.save_button = gui.button(
-            box, self, "Save", callback=self.save_report, disabled=True
+            box, self, "保存", callback=self.save_report, disabled=True
         )
         self.print_button = gui.button(
-            box, self, "Print", callback=self._print_report, disabled=True
+            box, self, "打印", callback=self._print_report, disabled=True
         )
 
         class PyBridge(QObject):
@@ -257,7 +257,7 @@ class OWReport(OWBaseWidget):
             html += "<div id='{}' class='normal' " \
                     "onClick='pybridge._select_item(this.id)'>{}<div " \
                     "class='textwrapper'><textarea " \
-                    "placeholder='Write a comment...'" \
+                    "placeholder='写下评论...'" \
                     "onInput='this.innerHTML = this.value;" \
                     "pybridge._add_comment(this.parentNode.parentNode.id, this.value);'" \
                     ">{}</textarea></div>" \
@@ -340,7 +340,7 @@ class OWReport(OWBaseWidget):
         formats = OrderedDict(formats)
 
         filename, selected_format = QFileDialog.getSaveFileName(
-            self, "Save Report", self.save_dir, ';;'.join(formats.keys()))
+            self, "保存报告", self.save_dir, ';;'.join(formats.keys()))
         if not filename:
             return QDialog.Rejected
 
@@ -394,7 +394,7 @@ class OWReport(OWBaseWidget):
     def _print_report(self):
         printer = QPrinter()
         print_dialog = QPrintDialog(printer, self)
-        print_dialog.setWindowTitle("Print report")
+        print_dialog.setWindowTitle("打印报告")
         if print_dialog.exec() != QDialog.Accepted:
             return
         self._print_to_printer(printer)
@@ -433,13 +433,13 @@ class OWReport(OWBaseWidget):
         return self
 
     def permission_error(self, filename):
-        log.error("PermissionError when trying to write report.", exc_info=True)
+        log.error("尝试写入报告时发生权限错误。", exc_info=True)
         mb = QMessageBox(
             self,
             icon=QMessageBox.Critical,
-            windowTitle=self.tr("Error"),
-            text=self.tr("Permission error when trying to write report."),
-            informativeText=self.tr("Permission error occurred "
+            windowTitle=self.tr("错误"),
+            text=self.tr("尝试写入报告时发生权限错误。"),
+            informativeText=self.tr("发生权限错误"
                                     "while saving '{}'.").format(filename),
             detailedText=traceback.format_exc(limit=20)
         )

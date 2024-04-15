@@ -20,7 +20,7 @@ class ProgressBarMixin:
         Initialize the widget's progress (i.e show and set progress to 0%).
         """
         self.startTime = time.time()
-        self.setWindowTitle(self.captionTitle + " (0% complete)")
+        self.setWindowTitle(self.captionTitle + " (0% 完成)")
 
         if self.__progressState != 1:
             self.__progressState = 1
@@ -59,10 +59,10 @@ class ProgressBarMixin:
                 text = "{}:{:02}:{:02}".format(hrs, mins, secs)
             else:
                 text = "{}:{}:{:02}".format(hrs, mins, secs)
-            self.setWindowTitle("{} ({:d}%, ETA: {})"
+            self.setWindowTitle("{} ({:d}%, 预计剩余时间: {})"
                                 .format(self.captionTitle, int(value), text))
         else:
-            self.setWindowTitle(self.captionTitle + " (0% complete)")
+            self.setWindowTitle(self.captionTitle + " (0% 完成)")
 
         if old != value:
             self.progressBarValueChanged.emit(value)

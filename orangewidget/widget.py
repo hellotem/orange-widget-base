@@ -355,12 +355,12 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
 
         # this action is enabled by the canvas framework
         self.__help_action = QAction(
-            "Help", self, objectName="action-help", toolTip="Show help",
+            "帮助", self, objectName="action-help", toolTip="显示帮助",
             enabled=False, shortcut=QKeySequence(Qt.Key_F1)
         )
         self.__report_action = QAction(
-            "Report", self, objectName="action-report",
-            toolTip="Create and display a report",
+            "报告", self, objectName="action-report",
+            toolTip="创建和显示报告",
             enabled=False, visible=False,
             shortcut=QKeySequence("alt+r")
         )
@@ -370,8 +370,8 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             self.__report_action.setVisible(True)
 
         self.__save_image_action = QAction(
-            "Save Image", self, objectName="action-save-image",
-            toolTip="Save image",
+            "保存图像", self, objectName="action-save-image",
+            toolTip="保存图像",
             shortcut=QKeySequence("alt+s"),
         )
         self.__save_image_action.triggered.connect(self.save_graph)
@@ -379,8 +379,8 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
         self.__save_image_action.setVisible(bool(self.graph_name))
 
         self.__reset_action = QAction(
-            "Reset", self, objectName="action-reset-settings",
-            toolTip="Reset settings to default state",
+            "重置", self, objectName="action-reset-settings",
+            toolTip="重置设置为默认状态",
             enabled=False, visible=False,
         )
         if hasattr(self, "reset_settings"):
@@ -389,8 +389,8 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             self.__reset_action.setVisible(True)
 
         self.__visual_settings_action = QAction(
-            "Show View Options", self, objectName="action-visual-settings",
-            toolTip="Show View Options",
+            "显示视图选项", self, objectName="action-visual-settings",
+            toolTip="显示视图选项",
             enabled=False, visible=False,
         )
         self.__visual_settings_action.triggered.connect(
@@ -402,7 +402,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
         self.addAction(self.__help_action)
 
         self.__copy_action = QAction(
-            "Copy to Clipboard", self, objectName="action-copy-to-clipboard",
+            "复制到剪贴板", self, objectName="action-copy-to-clipboard",
             shortcut=QKeySequence.Copy, enabled=False, visible=False
         )
         self.__copy_action.triggered.connect(self.copy_to_clipboard)
@@ -410,16 +410,16 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
                 or self.graph_name is not None:
             self.__copy_action.setEnabled(True)
             self.__copy_action.setVisible(True)
-            self.__copy_action.setText("Copy Image to Clipboard")
+            self.__copy_action.setText("将图像复制到剪贴板")
 
         # macOS Minimize action
         self.__minimize_action = QAction(
-            "Minimize", self, shortcut=QKeySequence("ctrl+m")
+            "最小化", self, shortcut=QKeySequence("ctrl+m")
         )
         self.__minimize_action.triggered.connect(self.showMinimized)
         # macOS Close window action
         self.__close_action = QAction(
-            "Close", self, objectName="action-close-window",
+            "关闭", self, objectName="action-close-window",
             shortcut=QKeySequence("ctrl+w")
         )
         self.__close_action.triggered.connect(self.hide)
@@ -442,7 +442,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             )
             mb.setVisible(mbvisible)
             self.__menubar_action = QAction(
-                "Show Menu Bar",  self, objectName="action-show-menu-bar",
+                "显示菜单栏",  self, objectName="action-show-menu-bar",
                 checkable=True,
                 shortcut=QKeySequence("ctrl+shift+m")
             )
@@ -461,13 +461,13 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             )
             self.addAction(self.__menubar_action)
 
-        fileaction = mb.addMenu(_Menu("&File", mb, objectName="menu-file"))
+        fileaction = mb.addMenu(_Menu("文件", mb, objectName="menu-file"))
         fileaction.setVisible(False)
         fileaction.menu().addSeparator()
         fileaction.menu().addAction(self.__report_action)
         fileaction.menu().addAction(self.__save_image_action)
         fileaction.menu().addAction(self.__reset_action)
-        editaction = mb.addMenu(_Menu("&Edit", mb, objectName="menu-edit"))
+        editaction = mb.addMenu(_Menu("编辑", mb, objectName="menu-edit"))
         editaction.setVisible(False)
 
         editaction.menu().addAction(self.__copy_action)
@@ -475,29 +475,29 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             # QTBUG-17291
             editaction.menu().addAction(
                 QAction(
-                    "Cut", self, enabled=False,
+                    "剪切", self, enabled=False,
                     shortcut=QKeySequence(QKeySequence.Cut),
             ))
             editaction.menu().addAction(
                 QAction(
-                    "Copy", self, enabled=False,
+                    "复制", self, enabled=False,
                     shortcut=QKeySequence(QKeySequence.Copy),
             ))
             editaction.menu().addAction(
                 QAction(
-                    "Paste", self, enabled=False,
+                    "粘贴", self, enabled=False,
                     shortcut=QKeySequence(QKeySequence.Paste),
             ))
             editaction.menu().addAction(
                 QAction(
-                    "Select All", self, enabled=False,
+                    "全选", self, enabled=False,
                     shortcut=QKeySequence(QKeySequence.SelectAll),
             ))
 
-        viewaction = mb.addMenu(_Menu("&View", mb, objectName="menu-view"))
+        viewaction = mb.addMenu(_Menu("视图", mb, objectName="menu-view"))
         viewaction.setVisible(False)
         viewaction.menu().addAction(self.__visual_settings_action)
-        windowaction = mb.addMenu(_Menu("&Window", mb, objectName="menu-window"))
+        windowaction = mb.addMenu(_Menu("窗口", mb, objectName="menu-window"))
         windowaction.setVisible(False)
 
         if sys.platform == "darwin":
@@ -505,7 +505,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             windowaction.menu().addAction(self.__minimize_action)
             windowaction.menu().addSeparator()
 
-        helpaction = mb.addMenu(_Menu("&Help", mb, objectName="help-menu"))
+        helpaction = mb.addMenu(_Menu("帮助", mb, objectName="help-menu"))
         helpaction.menu().addAction(self.__help_action)
 
         self.left_side = None
@@ -518,7 +518,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             self.layout().setMenuBar(mb)
 
         self.__quick_help_action = QAction(
-            "Quick Help Tip", self, objectName="action-quick-help-tip",
+            "快速帮助提示", self, objectName="action-quick-help-tip",
             shortcut=QKeySequence("shift+f1")
         )
         self.__quick_help_action.setEnabled(bool(self.UserAdviceMessages))
@@ -528,7 +528,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
 
         if self.__splitter is not None and self.__splitter.count() > 1:
             action = QAction(
-                "Show Control Area", self,
+                "显示控制区", self,
                 objectName="action-show-control-area",
                 shortcut=QKeySequence("Ctrl+Shift+D"),
                 checkable=True,
@@ -741,10 +741,10 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
         # These buttons are inserted in buttons_area, if it exists
         # Otherwise it is up to the widget to add them to some layout
         if self.graph_name is not None:
-            self.graphButton = QPushButton("&Save Image", autoDefault=False)
+            self.graphButton = QPushButton("保存图像", autoDefault=False)
             self.graphButton.clicked.connect(self.save_graph)
         if hasattr(self, "send_report"):
-            self.report_button = QPushButton("&Report", autoDefault=False)
+            self.report_button = QPushButton("报告", autoDefault=False)
             self.report_button.clicked.connect(self.show_report)
 
     def set_basic_layout(self):
@@ -823,8 +823,8 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             # enabled by default. Client classes can inspect self.actions
             # and enable it if necessary.
             self.__statusbar_action = statusbar_action = QAction(
-                "Show Status Bar", self, objectName="action-show-status-bar",
-                toolTip="Show status bar", checkable=True,
+                "显示状态栏", self, objectName="action-show-status-bar",
+                toolTip="显示状态栏", checkable=True,
                 enabled=False, visible=False,
                 shortcut=QKeySequence("Shift+Ctrl+\\")
             )
@@ -876,7 +876,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
                 # damn millennials
                 b = _StatusBarButton(
                     icon=icon("hamburger.svg"),
-                    toolTip="Menu",
+                    toolTip="菜单",
                     objectName="status-bar-menu-button"
                 )
                 buttonsLayout.addWidget(b)
@@ -1649,7 +1649,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
             standardButtons=buttons)
 
         btn = self.__msgwidget.button(MessageOverlayWidget.Ok)
-        btn.setText("Ok, got it")
+        btn.setText("好的,知道了")
 
         self.__msgwidget.setStyleSheet("""
             MessageOverlayWidget {
@@ -1663,7 +1663,7 @@ class OWBaseWidget(QDialog, OWComponent, Report, ProgressBarMixin,
 
         if message.moreurl is not None:
             helpbutton = self.__msgwidget.button(MessageOverlayWidget.Help)
-            helpbutton.setText("Learn more\N{HORIZONTAL ELLIPSIS}")
+            helpbutton.setText("了解更多...")
             self.__msgwidget.helpRequested.connect(
                 lambda: QDesktopServices.openUrl(QUrl(message.moreurl)))
 
@@ -2034,7 +2034,7 @@ class StateInfo(QObject):
         elif isinstance(summary, StateInfo.Summary):
             assert_single_arg()
             if isinstance(summary, StateInfo.Empty):
-                summary = summary.updated(details="No data on input",
+                summary = summary.updated(details="输入无数据",
                                           brief='-')
             if summary.icon.isNull():
                 summary = summary.updated(icon=summary.default_icon("input"))
@@ -2092,7 +2092,7 @@ class StateInfo(QObject):
         elif isinstance(summary, StateInfo.Summary):
             assert_single_arg()
             if isinstance(summary, StateInfo.Empty):
-                summary = summary.updated(details="No data on output",
+                summary = summary.updated(details="输出无数据",
                                           brief='-')
             if summary.icon.isNull():
                 summary = summary.updated(icon=summary.default_icon("output"))

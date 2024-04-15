@@ -62,13 +62,13 @@ class Report:
         report = self._get_designated_report_view()
         if not HAVE_REPORT and not report.have_report_warning_shown:
             QMessageBox.critical(
-                None, "Missing Component",
-                "Orange can not display reports, because your installation "
-                "contains neither WebEngine nor WebKit.\n\n"
-                "If you installed Orange with conda or pip, try using another "
-                "PyQt distribution. "
-                "If you installed Orange with a standard installer, please "
-                "report this bug."
+                None, "缺少组件",
+                "Orange无法显示报告,因为您的安装"
+                "既没有WebEngine也没有WebKit。\n\n"
+                "如果您使用conda或pip安装了Orange,请尝试使用其他"
+                "PyQt发行版。"
+                "如果您使用标准安装程序安装了Orange,请"
+                "报告此错误。"
             )
             report.have_report_warning_shown = True
 
@@ -493,7 +493,7 @@ def plural_w(s, number, suffix="s", capitalize=False):
 
 def bool_str(v):
     """Convert a boolean to a string."""
-    return "Yes" if v else "No"
+    return "是" if v else "否"
 
 
 def clip_string(s, limit=1000, sep=None):

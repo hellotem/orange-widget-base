@@ -160,7 +160,7 @@ class GuiTest(unittest.TestCase):
     GuiTest ensures that a QApplication exists before tests are run an
     """
     tear_down_stack: ExitStack
-    LANGUAGE = "English"
+    LANGUAGE = "英语"
 
     @classmethod
     def setUpClass(cls):

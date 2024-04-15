@@ -230,7 +230,7 @@ class ComboBoxSearch(QComboBox):
         self.__popup = popup
         self.__proxy = proxy
         self.__searchline.setText("")
-        self.__searchline.setPlaceholderText("Filter...")
+        self.__searchline.setPlaceholderText("过滤...")
         self.__searchline.setVisible(True)
         self.__searchline.textEdited.connect(proxy.setFilterFixedString)
 

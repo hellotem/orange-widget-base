@@ -277,14 +277,14 @@ def summarize(messages):
 
     nerrors, nwarnings, ninfo = len(errors), len(warnings), len(info)
     if errors:
-        text_parts.append(f"{nerrors} {pl(nerrors, 'error')}")
+        text_parts.append(f"{nerrors} {pl(nerrors, 错误)}")
     if warnings:
-        text_parts.append(f"{nwarnings} {pl(nwarnings, 'warning')}")
+        text_parts.append(f"{nwarnings} {pl(nwarnings, '警告')}")
     if info:
         if not (errors and warnings and lead):
-            text_parts.append(f"{ninfo} {pl(ninfo, 'message')}")
+            text_parts.append(f"{ninfo} {pl(ninfo, '消息')}")
         else:
-            text_parts.append(f"{ninfo} other {pl(ninfo, 'message')}")
+            text_parts.append(f"{ninfo} 其他 {pl(ninfo, '消息')}")
 
     if leading_text:
         text = leading_text

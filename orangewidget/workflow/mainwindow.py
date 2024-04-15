@@ -54,22 +54,22 @@ class OWCanvasMainWindow(CanvasMainWindow):
         super().__init__(*args, **kwargs)
 
         self.show_report_action = QAction(
-            "Show report", self,
+            "显示报告", self,
             objectName="action-show-report",
-            toolTip="Show a report window",
+            toolTip="显示报告窗口",
             shortcut=QKeySequence("Shift+R"),
             enabled=HAVE_REPORT,
         )
         self.show_report_action.triggered.connect(self.show_report_view)
         self.open_report_action = QAction(
-            "Open Report...", self,
+            "打开报告...", self,
             objectName="action-open-report",
-            toolTip="Open a saved report",
+            toolTip="打开已保存的报告",
             enabled=HAVE_REPORT,
         )
         self.open_report_action.triggered.connect(self.open_report)
         self.reset_widget_settings_action = QAction(
-            self.tr("Reset Widget Settings..."), self,
+            self.tr("重置窗口小部件设置..."), self,
             triggered=self.reset_widget_settings
         )
 
@@ -95,7 +95,7 @@ class OWCanvasMainWindow(CanvasMainWindow):
         start_dir = settings.value(KEY, "", type=str)
         dlg = QFileDialog(
             self,
-            windowTitle=self.tr("Open Report"),
+            windowTitle=self.tr("打开报告"),
             acceptMode=QFileDialog.AcceptOpen,
             fileMode=QFileDialog.ExistingFile,
         )
@@ -103,7 +103,7 @@ class OWCanvasMainWindow(CanvasMainWindow):
             dlg.setDirectory(start_dir)
 
         dlg.setWindowModality(Qt.ApplicationModal)
-        dlg.setNameFilters(["Report (*.report)"])
+        dlg.setNameFilters(["报告 (*.report)"])
 
         def accepted():
             directory = dlg.directory().absolutePath()
@@ -153,10 +153,10 @@ class OWCanvasMainWindow(CanvasMainWindow):
         name = QApplication.applicationName() or 'Orange'
         mb = QMessageBox(
             self,
-            windowTitle="Clear settings",
-            text=f"{name} needs to be restarted for the changes to take effect.",
+            windowTitle="清除设置",
+            text=f"{name} 需要重新启动才能使更改生效。",
             icon=QMessageBox.Information,
-            informativeText=f"Press OK to restart {name} now.",
+            informativeText=f"按OK立即重新启动 {name}。",
             standardButtons=QMessageBox.Ok | QMessageBox.Cancel,
         )
         res = mb.exec()
@@ -181,8 +181,8 @@ class OWCanvasMainWindow(CanvasMainWindow):
                 if any(w.isVisible() for w in windows):  # if a window close was cancelled
                     QApplication.setQuitOnLastWindowClosed(quit_temp_val)
                     QMessageBox(
-                        text="Restart Cancelled",
-                        informativeText=f"Settings will be reset on {name}'s next restart",
+                        text="重新启动已取消",
+                        informativeText=f"设置将在下次重新启动 {name} 时重置",
                         icon=QMessageBox.Information
                     ).exec()
                 else:
@@ -206,10 +206,10 @@ class OWCanvasMainWindow(CanvasMainWindow):
 
         mBox = QMessageBox(
             self,
-            windowTitle="Report window",
+            windowTitle="报告窗口",
             icon=QMessageBox.Question,
-            text="The report contains unsaved changes.",
-            informativeText="Would you like to save the report?",
+            text="报告包含未保存的更改。",
+            informativeText="您想保存报告吗?",
             standardButtons=QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel,
         )
         mBox.setDefaultButton(QMessageBox.Save)

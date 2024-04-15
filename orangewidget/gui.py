@@ -2022,7 +2022,7 @@ def auto_commit(widget, master, value, label, auto_label=None, box=False,
         if checkbox_label:
             auto_label = label
         else:
-            auto_label = f"{label.title()} Automatically"
+            auto_label = f"{label.title()} 自动"
     if isinstance(box, QWidget):
         b = box
         addToLayout = False
@@ -2107,7 +2107,7 @@ def auto_send(widget, master, value="auto_send", **kwargs):
     :type value:  str
     :return: the box
     """
-    return auto_commit(widget, master, value, "Send Selection", "Send Automatically", **kwargs)
+    return auto_commit(widget, master, value, "发送选择", "自动发送", **kwargs)
 
 
 def auto_apply(widget, master, value="auto_apply", **kwargs):
@@ -2123,7 +2123,7 @@ def auto_apply(widget, master, value="auto_apply", **kwargs):
     :type value:  str
     :return: the box
     """
-    return auto_commit(widget, master, value, "Apply", "Apply Automatically", **kwargs)
+    return auto_commit(widget, master, value, "应用", "自动应用", **kwargs)
 
 
 def connectControl(master, value, f, signal,
@@ -2747,7 +2747,7 @@ class ColoredBarItemDelegate(QtWidgets.QStyledItemDelegate):
 
     def displayText(self, value, locale=QtCore.QLocale()):
         if value is None or isinstance(value, float) and math.isnan(value):
-            return "NA"
+            return "无"
         if isinstance(value, float):
             return self.float_fmt % value
         return str(value)
@@ -3237,7 +3237,7 @@ class CalendarWidgetWithTime(QCalendarWidget):
         self._time_layout = sublay = QtWidgets.QHBoxLayout()
         sublay.setContentsMargins(6, 6, 6, 6)
         sublay.addStretch(1)
-        sublay.addWidget(QLabel("Time: "))
+        sublay.addWidget(QLabel("时间:"))
         sublay.addWidget(self.timeedit)
         sublay.addStretch(1)
         self.layout().addLayout(sublay)

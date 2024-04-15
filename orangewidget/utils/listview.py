@@ -27,7 +27,7 @@ class ListViewFilter(QListView):
             **kwargs
     ):
         super().__init__(*args, **kwargs)
-        self.__search = QLineEdit(self, placeholderText="Filter...")
+        self.__search = QLineEdit(self, placeholderText="过滤...")
         self.__search.textEdited.connect(self.__on_text_edited)
         self.__preferred_size = preferred_size
         self.__layout()
@@ -86,7 +86,7 @@ class ListViewSearch(QListView):
                       "in upcoming releases. Use ListViewFilter instead.",
                       DeprecationWarning)
         super().__init__(*a, **ak)
-        self.__search = QLineEdit(self, placeholderText="Filter...")
+        self.__search = QLineEdit(self, placeholderText="过滤...")
         self.__search.textEdited.connect(self.__setFilterString)
         # Use an QSortFilterProxyModel for filtering. Note that this is
         # never set on the view, only its rows insertes/removed signals are

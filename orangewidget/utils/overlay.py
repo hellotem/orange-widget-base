@@ -387,7 +387,7 @@ class MessageWidget(QWidget):
             stdbutton = button
             if button == MessageWidget.Ok:
                 role = MessageWidget.AcceptRole
-                button = QPushButton("Ok", default=False, autoDefault=False)
+                button = QPushButton("确定", default=False, autoDefault=False)
             elif button == MessageWidget.Close:
                 role = MessageWidget.RejectRole
 #                 button = QPushButton(
@@ -400,7 +400,7 @@ class MessageWidget(QWidget):
                             QStyle.SP_TitleBarCloseButton)))
             elif button == MessageWidget.Help:
                 role = MessageWidget.HelpRole
-                button = QPushButton("Help", default=False, autoDefault=False)
+                button = QPushButton("帮助", default=False, autoDefault=False)
         elif isinstance(button, str):
             if len(rolearg) != 1:
                 raise TypeError("Wrong number of arguments for "

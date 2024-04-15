@@ -34,7 +34,7 @@ class SettingsDialog(QDialog):
 
     def __init__(self, master: Union[QWidget, None],
                  settings: Dict[str, Dict[str, SettingsType]]):
-        super().__init__(master, windowTitle="Visual Settings")
+        super().__init__(master, windowTitle="视觉设置")
         self.__controls: Dict[KeyType, Tuple[QWidget, ValueType]] = {}
         self.__changed_settings: Dict[KeyType, ValueType] = {}
         self.setting_changed.connect(self.__on_setting_changed)

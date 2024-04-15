@@ -43,17 +43,17 @@ class Format(Protocol):
 def fix_extension(ext, format, suggested_ext, suggested_format):
     dlg = QMessageBox(
         QMessageBox.Warning,
-        "Mismatching extension",
-        f"Extension '{ext}' does not match the chosen file format, {format}."
-        "\n\nWould you like to fix this?")
+        "扩展名不匹配",
+        f"扩展名 '{ext}' 与所选文件格式 {format} 不匹配。"
+        "\n\n您想修复吗?")
     role = QMessageBox.AcceptRole
     change_ext = \
         suggested_ext and \
-        dlg.addButton(f"Change extension to {suggested_ext}", role)
+        dlg.addButton(f"将扩展名更改为 {suggested_ext}", role)
     change_format =\
         suggested_format and \
-        dlg.addButton("Save as " + suggested_format, role)
-    cancel = dlg.addButton("Back", role)
+        dlg.addButton("另存为" + suggested_format, role)
+    cancel = dlg.addButton("返回", role)
     dlg.setEscapeButton(cancel)
     dlg.exec()
     if dlg.clickedButton() == cancel:
@@ -121,7 +121,7 @@ def open_filename_dialog_save(start_dir, start_filter, file_formats):
         dialog = QFileDialog.getSaveFileName
         filename, format, filter = \
             open_filename_dialog(start_dir, start_filter, file_formats,
-                                 add_all=False, title="Save as...", dialog=dialog)
+                                 add_all=False, title="另存为...", dialog=dialog)
         if not filename:
             return None, None, None
 
@@ -151,7 +151,7 @@ def open_filename_dialog_save(start_dir, start_filter, file_formats):
 
 
 def open_filename_dialog(start_dir: str, start_filter: str, file_formats,
-                         add_all=True, title="Open...", dialog=None):
+                         add_all=True, title="打开...", dialog=None):
     """
     Open file dialog with file formats.
 
@@ -177,7 +177,7 @@ def open_filename_dialog(start_dir: str, start_filter: str, file_formats,
         for f in file_formats:
             all_extensions.update(f.EXTENSIONS)
         file_formats.insert(0, None)
-        filters.insert(0, "All readable files (*{})".format(
+        filters.insert(0, "所有可读文件 (*{})".format(
             ' *'.join(sorted(all_extensions))))
 
     if start_filter not in filters:
@@ -449,7 +449,7 @@ class RecentPathsWComboMixin(RecentPathsWidgetMixin):
         self._check_init()
         self.file_combo.clear()
         if not self.recent_paths:
-            self.file_combo.addItem("(none)")
+            self.file_combo.addItem("(无)")
             self.file_combo.model().item(0).setEnabled(False)
             self.file_combo.setToolTip("")
         else:

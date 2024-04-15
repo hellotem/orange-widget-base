@@ -383,7 +383,7 @@ class PngFormat(ImgFormat):
 
 class ClipboardFormat(PngFormat):
     EXTENSIONS = ()
-    DESCRIPTION = 'System Clipboard'
+    DESCRIPTION = '系统剪贴板'
     PRIORITY = 50
 
     @classmethod
